@@ -1,7 +1,231 @@
-<!DOCTYPE html>
+
 <html>
-<body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
-</body>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            height: 100%;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            
+
+        }
+        canvas {
+            background-color: rgba(0,0,0,0);
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+           
+        }
+   
+        @font-face {
+        font-family: 'MonaspaceXenon-Regular';
+        src: url('MonaspaceXenon-Regular.otf') format('opentype');
+        }
+
+        #ascii {
+            width: 4ch;            
+            word-wrap:break-word;   
+                    
+            background-color: rgb(246, 246, 246);
+        }
+       
+      
+        .text {        
+            font-family: MonaspaceXenon-Regular;              
+            font-size: 16;             
+            color:rgb(186, 186, 186); 
+           
+        }
+
+        .overlay {        
+            font-family: MonaspaceXenon-Regular;  
+            font-size: 16;             
+            color:rgb(152, 152, 152);    
+            background-color: rgb(246, 246, 246);        
+           
+        }     
+
+    </style>
+    <body>
+
+        <canvas id = "canvas"></canvas>
+      
+
+        <div id = "ascii" class = "text" ></div>  
+        <div id = "textoverlays" class = "text" style = "position: absolute;;">
+           
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 3ch); left: 3ch;" > Michael Smith is a Sydney-based musician.</div> 
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 5ch); left: 3ch;" > He has a degree in Composition for Creative Industries</div> 
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 6ch); left: 3ch;" > from the Sydney Conservatorium of Music</div> 
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 8ch); left: 3ch;" > Completed Works include debut EP  </div> 
+            <a href="https://open.spotify.com/album/4ckd3i8QiU5YaxhcpGUgrx?si=Y2x4MZiTRiWh0hHgOL0m_Q" class = "overlay" style = "position: absolute; top: calc(2.01 * 8ch); left: 36ch;" > Double Sheath (2024) </a>
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 9ch); left: 3ch;" > and the orchestral piece </div> 
+            <a href="https://youtu.be/SW8m9j4GJuQ" class = "overlay" style = "position: absolute; top: calc(2.01 * 9ch); left: 28ch;" > Wax Walking (2022) </a>
+
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 12ch); left: 3ch;" > Hear Snippets </div> 
+            <div id = "cropCircles" class = "overlay" style = "position: absolute; top: calc(2.01 * 19ch); left: 3ch; text-decoration: underline" > ▶ Crop Circles </div> 
+            <div id = "synthesizedSea" class = "overlay" style = "position: absolute; top: calc(2.01 * 14ch); left: 3ch; text-decoration: underline" > ▶ Synthesized Sea</div> 
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 15ch); left: 5ch; ;" > └ Game music prototype made in the Wwise engine featuring </div> 
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 16ch); left: 7ch;" > non-repeating random elements and smooth transitions </div> 
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 17ch); left: 7ch;" > between areas </div> 
+            <div id = "book" class = "overlay" style = "position: absolute; top: calc(2.01 * 21ch); left: 3ch; text-decoration: underline" > ▶ Book Song </div> 
+            <div id = "loLo" class = "overlay" style = "position: absolute; top: calc(2.01 * 23ch); left: 3ch; text-decoration: underline" > ▶ Lo Lo</div> 
+           
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 26ch); left: 3ch;" > Contact </div> 
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 28ch); left: 3ch;" > email michaeljsmithcomposer@gmail.com </div> 
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 29ch); left: 3ch;" > instagram @michaeldangersmith </div>  
+            <div class = "overlay" style = "position: absolute; top: calc(2.01 * 30ch); left: 3ch;" > discord @flashmichworld </div> 
+        
+
+        </div>
+             
+        
+        <script type="text/javascript">   
+        
+            
+
+            const canvas = document.getElementById("canvas");
+            const ascii = document.getElementById("ascii");
+            const textoverlays = document.getElementById("textoverlays");
+
+            const book = document.getElementById("book");
+            const cropCircles = document.getElementById("cropCircles");
+            const synthesizedSea = document.getElementById("synthesizedSea");            
+            const loLo = document.getElementById("loLo");
+
+            var bookAudio = new Audio('book.wav')
+            var cropCirclesAudio = new Audio('cropCircles.wav')
+            var synthesizedSeaAudio = new Audio('synthesizedSea.wav')
+            var loLoAudio = new Audio('loLo.wav')
+
+            const w = 64
+            const h = 32            
+            const map = "·^*%&#▒"
+            var t = 0
+            var mx = 0
+            var my = 0
+            window.onload = init
+      
+
+            function init() {
+
+                ascii.style.width = w + "ch"         
+                textoverlays.style.width = w + "ch"   
+                textoverlays.style.height = h * 2.01 + "ch" 
+                
+                update()
+            }
+            
+
+            function update() {
+                t += 0.002;
+                if (t >= 1) {
+                    t = 0;
+                }
+               
+                var str = ""
+                var value = 0
+                for (i = 0; i < h; i++) {
+                    for (j = 0; j < w; j++) {
+                        var x = j / w 
+                        var y = i / h                         
+                        value = t + ((y * 4) - Math.sin(x * 4));
+                        value += Math.cos((y - 0.5) * my * 0.05) * Math.tan((x - 0.5) * mx * 0.005)
+                        value = value - Math.floor(value);
+                        var char = map[(Math.round(lerp(0, map.length - 1, value)))];                      
+
+                        str += char;
+                    }
+                }
+                
+                ascii.innerHTML = str
+                
+                setTimeout(update, 5)
+            }
+
+            canvas.addEventListener('mousemove', (event) => {mx = event.clientX; my = event.clientY})
+            textoverlays.addEventListener('mousemove', (event) => {mx = event.clientX; my = event.clientY})
+            book.onclick = playBook;
+            cropCircles.onclick = playCropCircles;
+            synthesizedSea.onclick = playSynthesizedSea;
+            loLo.onclick = playLoLo;
+
+            function playBook() {
+                
+                book.style.color = "#000000";
+                cropCircles.style.color = "#989898";
+                synthesizedSea.style.color = "#989898";
+                loLo.style.color = "#989898";
+
+                bookAudio.currentTime = 0;
+                bookAudio.loop = "true";
+                bookAudio.play();
+                cropCirclesAudio.pause();
+                synthesizedSeaAudio.pause();
+                loLoAudio.pause();
+            }
+
+               function playCropCircles() {
+                
+                cropCircles.style.color = "#000000";
+                book.style.color = "#989898";
+                synthesizedSea.style.color = "#989898";
+                loLo.style.color = "#989898";
+
+                cropCirclesAudio.currentTime = 0;
+                cropCirclesAudio.loop = true;
+                cropCirclesAudio.play();
+                bookAudio.pause();
+                synthesizedSeaAudio.pause();
+                loLoAudio.pause();
+               
+                
+            }
+
+               function playSynthesizedSea() {
+                
+                synthesizedSea.style.color = "#000000";
+                cropCircles.style.color = "#989898";
+                book.style.color = "#989898";
+                loLo.style.color = "#989898";
+
+                synthesizedSeaAudio.currentTime = 0;
+                synthesizedSeaAudio.loop = true;
+                synthesizedSeaAudio.play();
+                cropCirclesAudio.pause();
+                bookAudio.pause();
+                loLoAudio.pause();
+            }
+
+               function playLoLo() {
+                
+                loLo.style.color = "#000000";
+                cropCircles.style.color = "#989898";
+                synthesizedSea.style.color = "#989898";
+                book.style.color = "#989898";
+
+                loLoAudio.currentTime = 0;
+                loLoAudio.loop = true;
+                loLoAudio.play();
+                cropCirclesAudio.pause();
+                synthesizedSeaAudio.pause();
+                bookAudio.pause();
+            }
+
+            function lerp(a, b, mix) {
+                return a * (1 - mix) + b * mix
+            }
+
+            function clamp(x, low, high) {
+                return Math.min(Math.max(x, low), high)
+            }
+        
+
+        </script>
+       
+    </body>
+
 </html>
