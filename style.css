@@ -24,14 +24,14 @@ video {
 }
 
 .player {
-    height: 67ch;
+    height: 62%;
     
     border: 0px solid white;    
 }
 
 .sq {
-    width: 74ch;    
-    height: 74ch; 
+    width: 60%;    
+    aspect-ratio: 1;
     color:rgb(199, 199, 199);    
     background-color: rgb(246, 246, 246);  
     font-family: MonaspaceXenon-Regular;              
