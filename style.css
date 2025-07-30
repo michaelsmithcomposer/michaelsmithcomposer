@@ -1,0 +1,52 @@
+html, body {
+    height: 100%;       
+}
+
+@font-face {
+        font-family: 'MonaspaceXenon-Regular';
+        src: url('MonaspaceXenon-Regular.otf') format('opentype');
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+   
+}
+
+video {
+  height: 100%;
+  width: auto;
+}
+
+.player {
+    height: 67ch;
+    
+    border: 0px solid white;    
+}
+
+.sq {
+    width: 74ch;    
+    height: 74ch; 
+    color:rgb(199, 199, 199);    
+    background-color: rgb(246, 246, 246);  
+    font-family: MonaspaceXenon-Regular;              
+    font-size: 16;   
+    position: absolute;    
+    
+}
+
+.overlay {      
+    
+    color:rgb(152, 152, 152);    
+    background-color: rgb(246, 246, 246);        
+    font-family: MonaspaceXenon-Regular;              
+    font-size: 16;       
+    position: relative;  
+    
+}   
+
