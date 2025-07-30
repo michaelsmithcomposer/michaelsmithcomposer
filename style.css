@@ -24,13 +24,13 @@ video {
 }
 
 .player {
-    height: 62%;
+    height: 540px;
     
-    border: 0px solid white;    
+    
 }
 
 .sq {
-    width: 60%;    
+    width: 734px;    
     aspect-ratio: 1;
     color:rgb(199, 199, 199);    
     background-color: rgb(246, 246, 246);  
