@@ -116,8 +116,8 @@ class Waveform {
     }
 
     randomizePath() {        
-        this.nextPath[0] = new Point(0, canvas.height / 2);
-        this.nextPath[1] = new Point(canvas.width / 3, canvas.height / 2);
+        this.nextPath[0] = new Point(0, canvas.height * 0.4);
+        this.nextPath[1] = new Point(canvas.width / 3, canvas.height * 0.4);
         for (let i = 2; i < this.segmentCount; i++) {
             
             let longEnough = false;
@@ -289,10 +289,10 @@ function resize() {
     canvas.height = window.innerHeight;
     wave.randomizePath();
     if (canvas.height < heightThreshold) {
-        let h = lerp(50, 100, inverseLerp(heightThreshold, 0, canvas.height)) + "%"       
+        let h = lerp(44, 100, inverseLerp(heightThreshold, 0, canvas.height)) + "%"       
         document.getElementById("top-container").style.width = h
     } else {
-        document.getElementById("top-container").style.width = "50%"
+        document.getElementById("top-container").style.width = "44%"
         
     }
 }
