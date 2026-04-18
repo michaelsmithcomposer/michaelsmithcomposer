@@ -1,44 +1,108 @@
-<!DOCTYPE html>
 <html>
-    <head>
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
-        <link rel="stylesheet" href="style.css">    
-        <script defer src="app.js" charset="UTF-8"></script>
-        <title>Michael Smith</title>
-        <link rel="icon" type="image/x-icon" href="icon.png">
-    </head>
+    <style>
+        @font-face {
+            font-family: 'EBGaramond';
+            src: url('EBGaramond-Regular.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'EBGaramondItalic';
+            src: url('EBGaramond-Italic.ttf') format('truetype');
+        }
+        body {
+            font-family: 'EBGaramond';
+            font-size: 30
+        }
+        .subheader {
+            font-family: 'EBGaramondItalic';
+            font-size: 22
+        }
+        .paragraph {
+            font-family: 'EBGaramond';
+            font-size: 19;
+            position:relative;
+            left: 5%    
+        }
+        .container {
+            position: relative;
+        }
+        #canvas {
+            position: absolute;            
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+    <body onload="init()">      
 
-    <body>
-
-        <div id = "screen" class="container">
-            <div id = "sq" class = "sq"></div>     
-                               
-            <div class = "overlay" style = "top: -290px">Michael Smith is a Sydney-based musician and creative programmer</div>
-           
-            <div class = "overlay" style = "top: -290px">He has a degree in composition from the Sydney Conservatorium of Music</div>
-             <div class = "overlay" style = "top: -290px">‎</div>
-            <div class = "overlay" style = "position: absolute;">video loading...</div>  <div class = "overlay" style = "top: -290px">Below: "Algal Loom" (2025, Max/MSP)</div>             
-            
-            <div class = "overlay" style = "top:290px">In 2024 he released the experimental electronic EP 
-                <a href="https://open.spotify.com/album/4ckd3i8QiU5YaxhcpGUgrx?si=Y2x4MZiTRiWh0hHgOL0m_Q">Double Sheath</a>
-            </div>
-            <div class = "overlay" style = "top:290px">and performed two live sets with audioreactive visuals</div>
-            <div class = "overlay" style = "top:290px">‎</div>
-            <div class = "overlay" style = "top:290px">michaeljsmithcomposer@gmail.com</div>
-            
-            <div class="player" style = "position: absolute;">   
-                <video autoplay muted loop>
+        <div class="container">
+            <div style="width: 50%; height: 65%">
+                <div onclick="test()">Michael Smith <br> Music & Creative Programming  </div>                    
+                <div class="subheader">
+                    <div>About</div>
+                    <div class="paragraph">I'm a Sydney-based musician. 
+                        In 2024 I graduated from the Sydney Conservatorium of Music with a degree in 
+                        Composition for Creative Industries, and released my debut electronic 
+                        EP Double Sheath. I'm interested in in the intersection of music and technology. I programmed and built 
+                        an experimental hardware synthesizer, and am currently developing a software audio manipulation tool.</div>
+                    <div>Works</div>
+                    <div class="paragraph">
+                        <a href="https://open.spotify.com/album/4ckd3i8QiU5YaxhcpGUgrx?si=Y2x4MZiTRiWh0hHgOL0m_Q">➚ Double Sheath (2024)<br></a>
+                        <a href="#">➚ Wax Walking for Instrumental Ensemble (2022)<br></a>
+                        <a href="#">➚ Meander Cutoff for Orchestra & Synthesizer (2025)<br></a>
+                    </div>
                    
-                    <source src="https://github.com/michaelsmithcomposer/michaelsmithcomposer/raw/refs/heads/main/algalLoom.mp4" type="video/mp4">
-                </video>             
-            </div>
-            
-        </div> 
-          
+                    
+                    
+                    <div id="debug"></div>  
+                </div>    
+            </div>   
+            <div class="subheader" style="width: 50%;">
+                <div style="left: 0%; top:100%; position:absolute">
+                    <div>Listen to excerpts</div>
+                    <div class="paragraph">
+                        <div>* Experimental</div>
+                        <a href="#" onclick="wave.loadTrack('matmo.wav')">▶ Matmo<br></a>
+                        <a href="#" onclick="wave.loadTrack('ircurs.wav')">▶ Ircurs<br></a>                        
+                        <a href="#" onclick="wave.loadTrack('op bloom.wav')">▶ Op Bloom<br></a>
+                        
+                        <div>* Ambient</div>
+                        <a href="#" onclick="wave.loadTrack('book.wav')">▶ Book<br></a>
+                        <a href="#" onclick="wave.loadTrack('skee.wav')">▶ Skee<br></a>                        
+                        <a href="#" onclick="wave.loadTrack('parallel.wav')">▶ Parallel <br></a>
+                        <a href="#" onclick="wave.loadTrack('synthesizedSea.wav')">▶ Synthesized Sea<br></a>
+                        <a href="#" onclick="wave.loadTrack('crop circles.wav')">▶ Crop Circles<br></a>                 
+                        
+                        <a href="#" onclick="wave.stop()">⏹ Stop<br></a>
+                    </div>
+                </div>
+                <div style="left: 20%; top:100%; position:absolute">
+                    <div>Programming</div>
+                    <div class="paragraph">
+                        <a href="#">➚ Slow Fourier Transform (GMTK Game Jam 2025)<br></a>
+                        <a href="#">➚ Algal Loom (Procedural Max/MSP Artwork)<br></a>
+                        <a href="#">➚ Orrery (DIY Hardware Synthesizer)<br></a>
+                        <a href="#">➚ This Website!<br></a>
+                    </div>
+                    <div>Other</div>
+                    <div class="paragraph">
+                        <a href="#">➚ Sculptures<br></a>
+                        <a href="#">➚ Crop Circles<br></a>
+                        <a href="#">➚ Planispheres<br></a>
+                    </div>
+                    <div>Contact</div>
+                    <div class="paragraph">michaeljsmithcomposer@gmail.com</div>
+                </div>
+                
+                
+                
+            </div>                    
+                      
+        
 
-       
-
+            <canvas id="canvas""></canvas>  
+        </div>
+        
+        <script src="script.js"></script>
     </body>
 
-   
 </html>
