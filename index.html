@@ -22,6 +22,7 @@
             position:relative;
             left: 5%    
         }
+        
         .container {
             position: relative;
         }
@@ -31,18 +32,21 @@
             left: 0;
             z-index: -1;
         }
+        #bottom-container {
+            display: flex;
+        }
     </style>
     <body onload="init()">      
 
         <div class="container">
-            <div style="width: 50%; height: 65%">
+            <div id="top-container"">
                 <div onclick="test()">Michael Smith <br> Music & Creative Programming  </div>                    
                 <div class="subheader">
                     <div>About</div>
                     <div class="paragraph">I'm a Sydney-based musician. 
                         In 2024 I graduated from the Sydney Conservatorium of Music with a degree in 
                         Composition for Creative Industries, and released my debut electronic 
-                        EP Double Sheath. I'm interested in in the intersection of music and technology. I programmed and built 
+                        EP Double Sheath. I'm interested in the intersection of music and technology. I programmed and built 
                         an experimental hardware synthesizer, and am currently developing a software audio manipulation tool.</div>
                     <div>Works</div>
                     <div class="paragraph">
@@ -56,8 +60,8 @@
                     <div id="debug"></div>  
                 </div>    
             </div>   
-            <div class="subheader" style="width: 50%;">
-                <div style="left: 0%; top:100%; position:absolute">
+            <div class="subheader" id="bottom-container" style="bottom: 0%; width: 50%; position:fixed;">
+                <div style="left: 0%; position:relative">
                     <div>Listen to excerpts</div>
                     <div class="paragraph">
                         <div>* Experimental</div>
@@ -75,7 +79,7 @@
                         <a href="#" onclick="wave.stop()">⏹ Stop<br></a>
                     </div>
                 </div>
-                <div style="left: 20%; top:100%; position:absolute">
+                <div style="left: 20%; position:relative">
                     <div>Programming</div>
                     <div class="paragraph">
                         <a href="#">➚ Slow Fourier Transform (GMTK Game Jam 2025)<br></a>

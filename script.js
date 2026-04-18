@@ -68,7 +68,7 @@ class Waveform {
         this.angles = []
         this.width = 150
         this.dashSpacing = 10
-        this.dashWidth = 3
+        this.dashWidth = 3        
         this.audioSource = audioContext.createBufferSource();      
     }
 
@@ -256,10 +256,13 @@ let loadedAudio = false;
 
 const lerp = (a, b, mix) => a + (b - a) * mix;
 
+const inverseLerp = (a, b, t) => (t - a) / (b - a);
+
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const audioContext = new AudioContext();
 const updateDuration = 10;
+const heightThreshold = 750;
 let wave;
 let sampleCountSlider = document.getElementById("sampleCountSlider");
 let sampleResolutionSlider = document.getElementById("sampleResolutionSlider");
@@ -279,6 +282,13 @@ function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     wave.randomizePath();
+    if (canvas.height < heightThreshold) {
+        let h = lerp(50, 100, inverseLerp(heightThreshold, 0, canvas.height)) + "%"       
+        document.getElementById("top-container").style.width = h
+    } else {
+        document.getElementById("top-container").style.width = "50%"
+        
+    }
 }
 
 async function loadAudio() {
