@@ -94,15 +94,11 @@ class Waveform {
         this.audioSource.connect(audioContext.destination)    
         this.startTime = audioContext.currentTime;    
         this.step = Math.floor(this.buffer.length / this.totalSamples);         
-        this.play();
-    }
-
-    play() {
         this.active = true;      
         this.nextActiveScale = 1;  
         this.audioSource.loop = true;
         this.audioSource.start();
-    }
+    }            
 
     stop() {       
         
