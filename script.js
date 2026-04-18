@@ -93,7 +93,13 @@ class Waveform {
         this.audioSource.buffer = audioData[name]
         this.audioSource.connect(audioContext.destination)    
         this.startTime = audioContext.currentTime;    
-        this.step = Math.floor(this.buffer.length / this.totalSamples);         
+        this.step = Math.floor(this.buffer.length / this.totalSamples); 
+        
+        let tracks = document.getElementsByClassName('track');
+        for (let i = 0; i < tracks.length; i++) {
+            tracks[i].style.color = "blue";
+        }   
+        document.getElementById(name).style.color = "rgb(192, 43, 70)";  
         this.active = true;      
         this.nextActiveScale = 1;  
         this.audioSource.loop = true;
@@ -266,7 +272,7 @@ const heightThreshold = 750;
 let wave;
 let sampleCountSlider = document.getElementById("sampleCountSlider");
 let sampleResolutionSlider = document.getElementById("sampleResolutionSlider");
-const audioFiles = ["book.wav", "skee.wav", "crop circles.wav", "matmo.wav", "op bloom.wav", "parallel.wav", "ircurs.wav", "synthesizedSea.wav"]
+const audioFiles = ["book.wav", "skee2.wav", "crop circles.wav", "matmo.wav", "op bloom.wav", "parallel.wav", "ircurs.wav", "synthesizedSea.wav"]
 let gradient;
 let audioData = {};
 let mainColor = "rgb(65, 90, 255)";
@@ -304,12 +310,22 @@ function waitForLoad() {
     if (loadedAudio) { 
         onLoadedAudio();
     } else {
+        let t = Date.now();
+        if (t % 1000 < 333) {
+            document.getElementById("debug").innerText = "loading audio ."
+        } else if (t % 1000 < 666) {
+            document.getElementById("debug").innerText = "loading audio  .."
+        } else {
+            document.getElementById("debug").innerText = "loading audio  ..."
+        }
+
         setTimeout(waitForLoad, updateDuration);
     }   
 }
 
 function onLoadedAudio() {              
     
+    document.getElementById("debug").innerText = ""
     wave.path.push(new Point(0, 200), new Point(500, 400))
     wave.nextPath.push(new Point(0, 400), new Point(500, 400))
     window.addEventListener('resize', resize);    

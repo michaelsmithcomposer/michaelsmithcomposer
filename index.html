@@ -46,18 +46,10 @@
                     <div class="paragraph">I'm a Sydney-based musician. 
                         In 2024 I graduated from the Sydney Conservatorium of Music with a degree in 
                         Composition for Creative Industries, and released my debut electronic 
-                        EP Double Sheath. I'm interested in the intersection of music and technology. I programmed and built 
-                        an experimental hardware synthesizer, and am currently developing a software audio manipulation tool.</div>
-                    <div>Works</div>
-                    <div class="paragraph">
-                        <a href="https://open.spotify.com/album/4ckd3i8QiU5YaxhcpGUgrx?si=Y2x4MZiTRiWh0hHgOL0m_Q">➚ Double Sheath (2024)<br></a>
-                        <a href="#">➚ Wax Walking for Instrumental Ensemble (2022)<br></a>
-                        <a href="#">➚ Meander Cutoff for Orchestra & Synthesizer (2025)<br></a>
-                    </div>
-                   
-                    
-                    
-                    <div id="debug"></div>  
+                        EP Double Sheath. With an interest in the intersection of music and technology, I programmed and assembled 
+                        an experimental hardware synthesizer, and am currently developing a software audio manipulation environment.
+                    </div><br><br><br><br>                   
+                    <div id="debug" style="left: 20%; position: absolute;">loading audio...</div>  
                 </div>    
             </div>   
             <div class="subheader" id="bottom-container" style="bottom: 0%; width: 50%; position:fixed;">
@@ -65,34 +57,38 @@
                     <div>Listen to excerpts</div>
                     <div class="paragraph">
                         <div>* Experimental</div>
-                        <a href="#" onclick="wave.loadTrack('matmo.wav')">▶ Matmo<br></a>
-                        <a href="#" onclick="wave.loadTrack('ircurs.wav')">▶ Ircurs<br></a>                        
-                        <a href="#" onclick="wave.loadTrack('op bloom.wav')">▶ Op Bloom<br></a>
+                        <a href="#" class="track" id='matmo.wav' onclick="wave.loadTrack('matmo.wav')">▶ Calque<br></a>
+                        <a href="#" class="track" id='ircurs.wav'onclick="wave.loadTrack('ircurs.wav')">▶ Ircurs <i>(EP Track)</i><br></a>                        
+                        <a href="#" class="track" id='op bloom.wav' onclick="wave.loadTrack('op bloom.wav')">▶ Op Bloom <i>(EP Track)</i></a>
                         
                         <div>* Ambient</div>
-                        <a href="#" onclick="wave.loadTrack('book.wav')">▶ Book<br></a>
-                        <a href="#" onclick="wave.loadTrack('skee.wav')">▶ Skee<br></a>                        
-                        <a href="#" onclick="wave.loadTrack('parallel.wav')">▶ Parallel <br></a>
-                        <a href="#" onclick="wave.loadTrack('synthesizedSea.wav')">▶ Synthesized Sea<br></a>
-                        <a href="#" onclick="wave.loadTrack('crop circles.wav')">▶ Crop Circles<br></a>                 
+                        <a href="#" class="track" id='book.wav' onclick="wave.loadTrack('book.wav')">▶ Book Loop<br></a>
+                        <a href="#" class="track" id='skee2.wav' onclick="wave.loadTrack('skee2.wav')">▶ Pylon<br></a>                        
+                        <a href="#" class="track" id='parallel.wav' onclick="wave.loadTrack('parallel.wav')">▶ Parallel <br></a>
+                        <a href="#" class="track" id='synthesizedSea.wav' onclick="wave.loadTrack('synthesizedSea.wav')">▶ Synthesized Sea<br></a>
+                        <a href="#" class="track" id='crop circles.wav' onclick="wave.loadTrack('crop circles.wav')"">▶ Crop Circles<br></a>                 
                         
-                        <a href="#" onclick="wave.stop()">⏹ Stop<br></a>
+                        <a href="#" onclick="wave.stop()", style="color:brown">■ Stop<br></a>
                     </div>
                 </div>
                 <div style="left: 20%; position:relative">
+                    <div>Works</div>
+                    <div class="paragraph">
+                        <a href="https://open.spotify.com/album/4ckd3i8QiU5YaxhcpGUgrx?si=Y2x4MZiTRiWh0hHgOL0m_Q">➚ Double Sheath (2024)<br></a>
+                        <a >* Wax Walking for Instrumental Ensemble (2022)<br></a>
+                        <a >* Meander Cutoff for Orchestra & Synthesizer (2025)<br></a>
+                        <br>
+                    </div>
                     <div>Programming</div>
                     <div class="paragraph">
-                        <a href="#">➚ Slow Fourier Transform (GMTK Game Jam 2025)<br></a>
-                        <a href="#">➚ Algal Loom (Procedural Max/MSP Artwork)<br></a>
-                        <a href="#">➚ Orrery (DIY Hardware Synthesizer)<br></a>
-                        <a href="#">➚ This Website!<br></a>
-                    </div>
-                    <div>Other</div>
-                    <div class="paragraph">
-                        <a href="#">➚ Sculptures<br></a>
-                        <a href="#">➚ Crop Circles<br></a>
-                        <a href="#">➚ Planispheres<br></a>
-                    </div>
+                        <a href="https://michaelsnewgame.itch.io/slow-fourier-transform">➚ Slow Fourier Transform (GMTK Game Jam 2025)<br></a>
+                        <a href="https://youtu.be/cOwy4eNT78g">➚ Algal Loom (Procedural Max/MSP Artwork)<br></a>
+                        <a href="https://michaelsmithcomposer.github.io">➚ This Website!<br></a>
+                        <a>* Orrery Synth: </a><a href="https://www.youtube.com/watch?v=xSMSj8Beyss">➚ Video Excerpt</a>
+                        <a href="CMPN4608_Portfolio.pdf">➚ Documentation<br></a>
+                        <br>
+                    </div>              
+                    
                     <div>Contact</div>
                     <div class="paragraph">michaeljsmithcomposer@gmail.com</div>
                 </div>
