@@ -352,6 +352,22 @@ function update() {
 
     let t = Date.now()
     ctx.reset();    
+
+    const count = document.querySelector('input[name="totalSamples"]:checked')?.value;
+    if (count == "low") {
+        wave.totalSamples = 1 * 44100;
+    } else if (count == "med") {
+        wave.totalSamples = 10 * 44100;
+    } else {
+        wave.totalSamples = 20 * 44100;
+    }
+
+    const resolution = document.querySelector('input[name="resolution"]:checked')?.value;
+    if (resolution == "low") {
+        wave.samplesPerUnit = 0.1;
+    } else {
+        wave.samplesPerUnit = 1;
+    }
     
     for (let i = 0; i < wave.segmentCount; i++) {
         wave.path[i] = wave.path[i].lerp(wave.nextPath[i], 0.01);
