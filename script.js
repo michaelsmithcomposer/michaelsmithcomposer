@@ -272,7 +272,7 @@ const heightThreshold = 750;
 let wave;
 let sampleCountSlider = document.getElementById("sampleCountSlider");
 let sampleResolutionSlider = document.getElementById("sampleResolutionSlider");
-const audioFiles = ["book.wav", "skee2.wav", "crop circles.wav", "matmo.wav", "op bloom.wav", "parallel.wav", "ircurs.wav", "synthesizedSea.wav"]
+const audioFiles = ["book.wav", "skee2.wav", "crop circles.wav", "matmo.wav", "op bloom.wav", "parallel.wav", "ircurs.wav", "synthesizedSea.wav", "monoglades.wav"]
 let gradient;
 let audioData = {};
 let mainColor = "rgb(65, 90, 255)";
